@@ -19,7 +19,7 @@ public class Driver : MonoBehaviour
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal2"));
 
 
-        crew.transform.Translate(transform.forward * Input.GetAxis("Vertical")*speed, Space.Self);
+        crew.transform.Translate(transform.forward * Input.GetAxis("Vertical2")*speed, Space.Self);
 
         //Debug.Log(transform.eulerAngles.y);
         GM._instance.setAngleText(2, transform.eulerAngles.y);
