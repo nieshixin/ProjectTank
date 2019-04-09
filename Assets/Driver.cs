@@ -17,7 +17,15 @@ public class Driver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * Input.GetAxis("Horizontal2")* traverse_speed);
+        float v_turn = Input.GetAxis("Horizontal2");
+
+        if(Input.GetAxisRaw("Vertical2") != 0)
+        {
+            v_turn *= Input.GetAxisRaw("Vertical2");
+        }
+       
+
+        transform.Rotate(Vector3.up * v_turn * traverse_speed); 
 
 
         crew.transform.Translate(transform.forward * Input.GetAxis("Vertical2")*speed, Space.Self);
