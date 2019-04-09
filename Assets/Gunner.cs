@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class Gunner : MonoBehaviour
 {
-    [SerializeField] GameObject commander;
+    //crew reference
+    [SerializeField] Commander commander;
+    [SerializeField] Driver driver;
+
     [SerializeField] GameObject turrent;
     [SerializeField] GameObject paoguan;
 
     [SerializeField] float depression =0;
     [SerializeField] float elavation = 0;
 
-    public float speed;
+    public float turrent_rotation_speed;
+
     void Start()
     {
        
@@ -22,7 +26,20 @@ public class Gunner : MonoBehaviour
     void Update()
     {
         Cursor.visible = false;
-        turrent.transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * speed);
+
+      
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+           float delta_rot = Input.GetAxis("Horizontal") + Input.GetAxis("Horizontal2")*driver.traverse_speed;
+
+
+
+
+            turrent.transform.Rotate(Vector3.up * delta_rot * turrent_rotation_speed); //turning turrent
+
+
+        }
+
 
         if (Input.GetAxis("Vertical") <0)  //depression
         {
@@ -31,9 +48,9 @@ public class Gunner : MonoBehaviour
             if (Input.GetAxis("Vertical") + depression >= -8)
             {
                 depression += Input.GetAxis("Vertical");
-                paoguan.transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * speed);
+                paoguan.transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * turrent_rotation_speed);
 
-                transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * speed);
+                transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * turrent_rotation_speed);
 
                 elavation += Input.GetAxis("Vertical");
             }
@@ -42,12 +59,12 @@ public class Gunner : MonoBehaviour
         if (Input.GetAxis("Vertical") > 0)   //elavation
         {
 
-            if (Input.GetAxis("Vertical") * speed + elavation <= 35)
+            if (Input.GetAxis("Vertical") * turrent_rotation_speed + elavation <= 35)
             {
                 elavation += Input.GetAxis("Vertical");
-                paoguan.transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * speed);
+                paoguan.transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * turrent_rotation_speed);
 
-                transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * speed);
+                transform.Rotate(Vector3.left * Input.GetAxis("Vertical") * turrent_rotation_speed);
 
                 depression += Input.GetAxis("Vertical");
             }
