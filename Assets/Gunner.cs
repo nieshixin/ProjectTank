@@ -71,7 +71,7 @@ public class Gunner : MonoBehaviour
         }
         
 
-        Debug.Log(paoguan.transform.localEulerAngles.x);
+      
         
 
 

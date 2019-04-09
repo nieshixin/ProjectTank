@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {  // left button pressed
+        if (Input.GetButtonDown("Fire1")) {  // left button pressed
 
             GameObject go = (GameObject)Instantiate(shellObj, shellObj.transform.position, Quaternion.identity);
 
